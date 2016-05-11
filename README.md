@@ -1,9 +1,20 @@
-## Grove - 3-Axis Digital Accelerometer(±400g)
-[![Grove - 3-Axis Digital Accerometer(±400g)](http://www.seeedstudio.com/depot/bmz_cache/1/10c3981c549bac7dcb138742e4cf28d4.image.530x397.jpg)](http://www.seeedstudio.com/depot/Grove-3Axis-Digital-Accelerometer400g-p-1897.html?cPath=25_132)
-## Xadow - 3-Axis Digital Accelerometer(±400g)
-[![Xadow - 3-Axis Digital Accerometer(±400g)](http://www.seeedstudio.com/depot/bmz_cache/1/1e0d38b123fda92e1872df69dd6145ec.image.530x397.jpg)](http://www.seeedstudio.com/depot/Xadow3Axis-Digital-Accelerometer400g-p-1896.html?cPath=84_120)
+## H3LIS100DL for Arduino Library
+[The original project: Seeed Studio's H3LIS331DL](https://github.com/Seeed-Studio/Accelerometer_H3LIS331DL)
 
-The H3LIS331DL is a low power high performance 3-axis linear accelerometer belonging to the “nano” family, with digital I2C serial interface standard output. The device features ultra low power operational modes that allow advanced power saving and smart sleep to wake-up functions. The H3LIS331DL has dynamically user selectable full scales of ±100g/±200 g/±400 g and it is capable of measuring accelerations with output data rates from 0.5 Hz to 1 kHz.  For more information, you can visit our wiki [grove_3_Axis_Digital_Accelerometer_H3LIS331DL][1] and [xadow_3_Axis_Digital_Accelerometer_H3LIS331DL][2] 
+This fork exists because the H3LIS100DL differs slightly from the 331DL, as used by Seeed. This fork contains the adjustments to work on the sibling chip. 
+
+Using this library you can connect to a 100DL acceleromter in *nearly* exactly the same way as the original library.
+
+## Differences
+* 100DL is 8-bit readout, where 331DL is 16-bit, but that doesn't matter because the high byte reads as zero anyway. 
+* 100DL is full-scale 100G, where 331DL is adjustable 100/200/400, but the control register bits where scale is selected are disabled on the 100DL so writing to them is harmless, and the chip will always return full-scale 100G.
+* 100DL is capable of measuring accelerations with output data rates from 0.5 Hz to 400 Hz, where 331DL is capable of 0.5 Hz to 1kHz, but both use the same mode values, so the 100DL simply doesn't support mode 3, but modes 0,1,2 work the same.
+
+## Similarities
+* I2C address is the same (yay!)
+* 
+
+The H3LIS100DL is a low power high performance 3-axis linear accelerometer belonging to the “nano” family, with digital I2C serial interface standard output. The device features ultra low power operational modes that allow advanced power saving and smart sleep to wake-up functions. The H3LIS331DL is full scales ±100g and it is capable of measuring accelerations with output data rates from 0.5 Hz to 400 Hz.  For more information, you can visit our wiki [grove_3_Axis_Digital_Accelerometer_H3LIS331DL][1] and [xadow_3_Axis_Digital_Accelerometer_H3LIS331DL][2] 
 
 ### Features
 + Ultra low power mode consumption down to 10 µA
